@@ -28,59 +28,6 @@ public class RifaService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    /*public Rifa crearRifa(Rifa rifa, String codigoVip) {
-        // Verificar si el usuario existe
-        Usuario usuario = usuarioRepository.findById(rifa.getUsuario().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + rifa.getUsuario().getId()));
-
-        // Verificar si se proporcionó un código VIP
-        if (codigoVip != null) {
-            // Validar si el usuario ya es VIP
-            if (!usuario.isEsVip()) {
-                // Buscar el código VIP en la base de datos
-                CodigoVip codigo = codigoVipRepository.findByCodigo(codigoVip)
-                        .orElseThrow(() -> new IllegalArgumentException("Código VIP no válido."));
-
-                // Verificar si el código ya fue utilizado
-                if (codigo.isUtilizado()) {
-                    throw new IllegalArgumentException("El código VIP ya fue utilizado.");
-                }
-
-                // Asignar el código VIP al usuario
-                usuario.setEsVip(true);
-                usuario.setCodigoVip(codigoVip);
-                usuarioRepository.save(usuario);
-
-                // Marcar el código como utilizado
-                codigo.setUtilizado(true);
-                codigoVipRepository.save(codigo);
-            } else if (!usuario.getCodigoVip().equals(codigoVip)) {
-                // Si el usuario es VIP pero el código proporcionado no coincide con su código VIP
-                throw new IllegalArgumentException("El código VIP no corresponde al usuario.");
-            }
-        }
-
-        // Verificar si el usuario es VIP
-        if (usuario.isEsVip()) {
-            // Usuario VIP puede crear múltiples rifas
-            rifa.setUsuario(usuario);
-            rifa.setActive(true); // La rifa se crea como activa por defecto
-            return rifaRepository.save(rifa);
-        } else {
-            // Usuario normal solo puede crear una rifa por mes
-            LocalDate inicioMes = LocalDate.now().withDayOfMonth(1); // Primer día del mes
-            LocalDate finMes = inicioMes.plusMonths(1); // Primer día del siguiente mes
-
-            List<Rifa> rifasDelMes = rifaRepository.findByUsuarioAndFechaSorteoBetween(usuario, inicioMes, finMes);
-            if (rifasDelMes.size() >= 1) {
-                throw new IllegalArgumentException("Si desea crear mas rifas debe obtener un codigo VIP.");
-            }
-
-            rifa.setUsuario(usuario);
-            rifa.setActive(true);
-            return rifaRepository.save(rifa);
-        }
-    }*/
 
 
     public Rifa crearRifa1(Rifa rifa, String codigoVip) {

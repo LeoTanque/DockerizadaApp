@@ -13,6 +13,8 @@ services:
       DB_USER_NAME: root
       DB_PASSWORD: Tanque.123
       DB_DRIVER: com.mysql.cj.jdbc.Driver
+    volumes:
+      - ./uploads:/app/uploads
     restart: always
     depends_on:
       - java_db
